@@ -10,6 +10,9 @@
 #import <TuyaSmartLightKit/TuyaSmartLightKit.h>
 #import <TuyaSmartDeviceKit/TuyaSmartDeviceKit.h>
 
+#define IPhoneX ([UIApplication sharedApplication].statusBarFrame.size.height >= 44)
+#define APP_TOP_BAR_HEIGHT    (IPhoneX ? 88 : 64)
+
 @interface TYViewController () <TuyaSmartLightDeviceDelegate>
 
 @property (nonatomic, strong) TuyaSmartHomeManager *manager;
@@ -146,7 +149,7 @@
     [_colorVValueBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.view addSubview:_colorVValueBtn];
     
-    self.device = [TuyaSmartLightDevice deviceWithDeviceId:deviceModel.devId];
+    self.device = [TuyaSmartLightDevice deviceWithDeviceId:_deviceModel.devId];
     self.device.delegate = self;
     switch ([self.device getLightType]) {
         case TuyaSmartLightTypeC:

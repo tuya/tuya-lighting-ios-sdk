@@ -1,0 +1,6 @@
+framework module TuyaSmartLightKit {
+  umbrella header "TuyaSmartLightKit.h"
+
+  export *
+  module * { export * }
+}

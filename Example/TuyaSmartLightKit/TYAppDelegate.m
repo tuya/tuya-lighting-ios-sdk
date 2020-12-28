@@ -7,13 +7,41 @@
 //
 
 #import "TYAppDelegate.h"
+#import <TuyaSmartDemo/TYDemoApplicationImpl.h>
+#import <TuyaSmartDemo/TYDemoConfiguration.h>
+#import <TuyaSmartBaseKit/TuyaSmartBaseKit.h>
+#import "TYViewController.h"
+
+#define APP_KEY @"<#(nonnull NSString *)#>"
+#define APP_SECRET_KEY @"<#(nonnull NSString *)#>"
+
+@interface TYAppDelegate () <TYDemoPanelControlProtocol>
+
+@end
 
 @implementation TYAppDelegate
+
+- (void)gotoPanelControlDevice:(TuyaSmartDeviceModel * _Nullable )device group:(TuyaSmartGroupModel * _Nullable)group {
+
+    TYViewController *vc = [TYViewController new];
+    vc.deviceModel = device;
+    [tp_topMostViewController().navigationController pushViewController:vc animated:YES];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    return YES;
+#if DEBUG
+    [[TuyaSmartSDK sharedInstance] setDebugMode:YES];
+#endif
+    
+    [[TYDemoConfiguration sharedInstance] registService:@protocol(TYDemoPanelControlProtocol) withImpl:self];
+    TYDemoConfigModel *config = [[TYDemoConfigModel alloc] init];
+    config.appKey = SDK_APPKEY;
+    config.secretKey = SDK_APPSECRET;
+    
+    // Override point for customization after application launch.
+    return [[TYDemoApplicationImpl sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions config:config];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

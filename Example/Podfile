@@ -4,7 +4,7 @@ use_frameworks!
 platform :ios, '9.0'
 
 target 'TuyaSmartLightKit_Example' do
-  pod 'TuyaSmartLightKit', :path => '../'
+  pod 'TuyaSmartLightKit', :git => 'https://github.com/TuyaInc/tuyasmart_lighting_ios_sdk/tree/develop/TuyaSmartLightKit.framework'
   pod 'TuyaSmartDemo', :subspecs => [
    'Base',
    'Login',

@@ -7,7 +7,10 @@
 //
 
 @import UIKit;
+@class TuyaSmartDeviceModel;
 
 @interface TYViewController : UIViewController
+
+@property (strong, nonatomic) TuyaSmartDeviceModel *deviceModel;
 
 @end

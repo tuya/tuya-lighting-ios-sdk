@@ -11,6 +11,7 @@
 #import <TuyaSmartDemo/TYDemoConfiguration.h>
 #import <TuyaSmartBaseKit/TuyaSmartBaseKit.h>
 #import "TYViewController.h"
+#import "TPDemoUtils.h"
 
 #define APP_KEY @"<#(nonnull NSString *)#>"
 #define APP_SECRET_KEY @"<#(nonnull NSString *)#>"
@@ -37,8 +38,8 @@
     
     [[TYDemoConfiguration sharedInstance] registService:@protocol(TYDemoPanelControlProtocol) withImpl:self];
     TYDemoConfigModel *config = [[TYDemoConfigModel alloc] init];
-    config.appKey = SDK_APPKEY;
-    config.secretKey = SDK_APPSECRET;
+    config.appKey = APP_KEY;
+    config.secretKey = APP_SECRET_KEY;
     
     // Override point for customization after application launch.
     return [[TYDemoApplicationImpl sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions config:config];

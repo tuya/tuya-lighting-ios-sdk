@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		289C1D5D2599E6330084C94C /* t_s.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 289C1D5C2599E6330084C94C /* t_s.bmp */; };
 		438A877D8482B2937BABFBB4 /* Pods_TuyaSmartLightKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C14FA47386346EA47CF3ADCA /* Pods_TuyaSmartLightKit_Tests.framework */; };
 		4E64F5697353D175F80A3D4C /* Pods_TuyaSmartLightKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD0AA9AC505033E38694D69 /* Pods_TuyaSmartLightKit_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		289C1D5C2599E6330084C94C /* t_s.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = t_s.bmp; sourceTree = "<group>"; };
 		2BB08321228FDA33FD7CF767 /* TuyaSmartLightKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TuyaSmartLightKit.podspec; path = ../TuyaSmartLightKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2FDCE1F0FD5CC8890725D78E /* Pods-TuyaSmartLightKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuyaSmartLightKit_Example.release.xcconfig"; path = "Target Support Files/Pods-TuyaSmartLightKit_Example/Pods-TuyaSmartLightKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		4AD0AA9AC505033E38694D69 /* Pods_TuyaSmartLightKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuyaSmartLightKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +139,7 @@
 				6003F5A6195388D20070C39A /* TYViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
+				289C1D5C2599E6330084C94C /* t_s.bmp */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
 			name = "Example for TuyaSmartLightKit";
@@ -275,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				289C1D5D2599E6330084C94C /* t_s.bmp in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,

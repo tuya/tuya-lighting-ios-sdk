@@ -1,11 +1,10 @@
-source 'https://cdn.cocoapods.org/'
-use_frameworks!
+
 
 platform :ios, '9.0'
 
 target 'TuyaSmartLightKit_Example' do
-  pod 'TuyaSmartLightKit', :git => 'https://github.com/TuyaInc/tuyasmart_lighting_ios_sdk.git'
-  pod 'TuyaSmartDemo', :subspecs => [
+  pod 'TuyaSmartLightKit', :git => 'https://github.com/TuyaInc/tuyasmart_lighting_ios_sdk.git', :branch => 'develop'
+  pod 'TuyaSmartDemo', :path => '../', :subspecs => [
    'Base',
    'Login',
    'DeviceList',
@@ -13,7 +12,6 @@ target 'TuyaSmartLightKit_Example' do
    'SmartScene',
    'UserInfo']
   pod 'MBProgressHUD', '~> 0.9.2'
-  pod 'TYBluetooth', '< 10.0'
 
   target 'TuyaSmartLightKit_Tests' do
     inherit! :search_paths

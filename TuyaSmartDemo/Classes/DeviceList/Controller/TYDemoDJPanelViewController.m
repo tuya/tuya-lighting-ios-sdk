@@ -7,12 +7,9 @@
 
 #import "TYDemoDJPanelViewController.h"
 #import <TuyaSmartLightKit/TuyaSmartLightKit.h>
-#import <TuyaSmartDeviceKit/TuyaSmartDeviceKit.h>
 
 @interface TYDemoDJPanelViewController () <TuyaSmartLightDeviceDelegate>
 
-@property (nonatomic, strong) TuyaSmartHomeManager *manager;
-@property (nonatomic, strong) TuyaSmartHome *home;
 @property (nonatomic, strong) TuyaSmartLightDevice *device;
 @property (nonatomic, strong) UIButton *workModeBtn;
 @property (nonatomic, strong) UIButton *sceneModeBtn;

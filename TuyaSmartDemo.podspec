@@ -74,6 +74,7 @@ Pod::Spec.new do |s|
     
     ss.dependency 'SDWebImage'
     ss.dependency 'TuyaSmartDeviceKit'
+    ss.dependency 'TuyaSmartLightKit'
   end
   
   s.subspec 'AddDevice' do |ss|

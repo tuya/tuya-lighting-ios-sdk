@@ -513,6 +513,7 @@
 			baseConfigurationReference = AB3787053461A37F91C4354F /* Pods-TuyaSmartLightKit_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TuyaSmartLightKit/TuyaSmartLightKit-Prefix.pch";
 				INFOPLIST_FILE = "TuyaSmartLightKit/TuyaSmartLightKit-Info.plist";
@@ -529,6 +530,7 @@
 			baseConfigurationReference = 2FDCE1F0FD5CC8890725D78E /* Pods-TuyaSmartLightKit_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TuyaSmartLightKit/TuyaSmartLightKit-Prefix.pch";
 				INFOPLIST_FILE = "TuyaSmartLightKit/TuyaSmartLightKit-Info.plist";

@@ -18,7 +18,7 @@
 
 #import "TYDemoConfiguration.h"
 
-#import "TYViewController.h"
+#import "TYDemoDJPanelViewController.h"
 #import <TuyaSmartBLEMeshKit/TuyaSmartSIGMeshManager.h>
 #import <TuyaSmartBLEMeshKit/TuyaSmartHome+SIGMesh.h>
 #import <TuyaSmartBLEMeshKit/TuyaSmartSIGMeshManager+Activator.h>
@@ -309,7 +309,7 @@
                 vc.devId = deviceModel.devId;
                 [self.navigationController pushViewController:vc animated:YES];
             }  else if ([deviceModel.category isEqualToString:@"dj"]) {
-                TYViewController *vc = [[TYViewController alloc] init];
+                TYDemoDJPanelViewController *vc = [[TYDemoDJPanelViewController alloc] init];
                 vc.deviceModel = deviceModel;
                 [self.navigationController pushViewController:vc animated:YES];
             } else if ([deviceModel.productId isEqualToString:@"ylr9R01cMWnMRqEB"]) {

@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.authors = {"Tuya SDK"=>"developer@tuya.com"}
   s.homepage = "https://developer.tuya.com/"
   s.frameworks = ["UIKit", "Foundation"]
-  s.source = { :git => 'https://github.com/TuyaInc/tuyasmart_lighting_ios_sdk.git', :tag => s.version.to_s}
+  s.source = { :git => 'https://github.com/tuya/tuyasmart-lighting-ios-sdk.git', :tag => s.version.to_s}
   s.static_framework = true
   s.ios.deployment_target    = '9.0'
   s.ios.vendored_framework   = 'ios/*.framework'

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "TuyaSmartLightKit"
-  s.version = "0.1.0"
+  s.version = "0.1.1"
   s.summary = "Tuya Smart Light Kit for iOS"
   s.license = {"type"=>"MIT", "file"=>"LICENSE"}
   s.authors = {"Tuya SDK"=>"developer@tuya.com"}

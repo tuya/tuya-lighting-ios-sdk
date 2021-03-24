@@ -26,7 +26,7 @@ platform :ios, '9.0'
 
 target 'your_target_name' do
 
-   pod 'TuyaSmartLightKit', :git => 'https://github.com/TuyaInc/tuyasmart_lighting_ios_sdk.git'
+   pod 'TuyaSmartLightKit', :git => 'https://github.com/tuya/tuyasmart-lighting-ios-sdk.git'
 ```
 
 然后在项目根目录下执行 `pod update` 命令，集成第三方库。
@@ -301,6 +301,58 @@ typedef enum : NSUInteger {
                       success:(nullable TYSuccessHandler)success
                       failure:(nullable TYFailureError)failure;
 ```
+
+#### 标准DP code下发
+
+SDK没有封装的方法可以通过TuyaSmartLightDevice父类的此接口下发标准DP code指令。
+
+**接口说明**
+
+```objective-c
+/**
+ *  dp command publish.
+ *  标准 dp 命令下发
+ *
+ *  @param commands dpCode - value dictionary
+ *  @param success Success block
+ *  @param failure Failure block
+ */
+- (void)publishDpWithCommands:(NSDictionary *)commands
+                      success:(nullable TYSuccessHandler)success
+                      failure:(nullable TYFailureError)failure;
+```
+
+标准指令集分为v1和v2两个版本，可以通过标准code后面的v1和v2区分，具体有哪些指令可以参考下面的列表：
+
+#### 灯具v1标准指令集说明
+
+| 功能     | 标准code        | 类型    | 标准值                                                       | 示例                                                         | 备注                                                         |
+| -------- | --------------- | ------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 开关     | switch_led      | Boolean | true/false （打开/关闭）                                     | {"switch_led":true}                                          |                                                              |
+| 模式     | work_mode       | Enum    | "white"/"colour"/"scene"/"scene_1"/"scene_2"/"scene_3"/"scene_4" | {"work_mode":"scene"}                                        |                                                              |
+| 亮度     | bright_value_v1 | Integer | 25-255                                                       | {"bright_value_v1":100}                                      | 亮度值25-255，对应实际亮度10%-100%，最低亮度显示为10%        |
+| 色温     | temp_value_v1   | Integer | 0-255                                                        | {"temp_value_v1":100"}                                       | 色温范围0-100，对应实际色温0%-100%，分别对应最暖和最冷的范围取值，实际的色温值依赖于硬件的灯珠规格，比如2700K-6500K |
+| 颜色     | colour_data_v1  | String  | Value: ”00112233334455”（长度为14的字符串） 00: R 11: G 22: B 3333: H(色调Hue) 44: S(饱和度Saturation) 55: V(明度Value) | {"colour_data_v2":"2700000000ff27"}                          | 颜色按照HSV体系传输，也可以通过算法转换为RGB颜色体系 参考网址https://www.rapidtables.com/convert/color/index.html 可以获得RGB (R,G,B): (HEX)(32,64,C8),(DEC)(50,100,200) |
+| 情景     | scene_data      | String  | Value: "00112233334455"（长度为14的字符串） 00: R 11: G 22: B 3333: H(色调Hue) 44: S(饱和度Saturation) 55: V(明度Value) | {"work_mode":"scene","scene_data":"fffcf70168ffff"}          |                                                              |
+| 柔光情景 | flash_scene_1   | String  | Value :"00112233445566"（长度为14的字符串） 00: 亮度(brightness) 11: 色温(color Temperature) 22: 变化频率(frequency) 33：变化组数(01) 445566：R G B | {"work_mode":"scene_1","flash_scene_1":"ffff320100ff00"}     |                                                              |
+| 炫彩情景 | flash_scene_3   | String  | 同上                                                         | {"work_mode":"scene_3","flash_scene_3":"ffff320100ff00"}     |                                                              |
+| 缤纷情景 | flash_scene_2   | String  | Value:"00112233445566....445566"（长度为14~~44的字符串） 00: 亮度(brightness) 11: 色温(color Temperature) 22: 变化频率(frequency) 33：变化组数(01~~06) 445566：R G B 注：变化组数有多少，就有多少个445566,组数最大为6组 | {"work_mode":"scene_2","flash_scene_2":"ffff5003ff000000ff000000ff"} |                                                              |
+| 斑斓情景 | flash_scene_4   | String  | 同上                                                         | {"work_mode":"scene_4","flash_scene_4":"ffff0505ff000000ff00ffff00ff00ff0000ff"} |                                                              |
+
+#### 灯具v2标准指令集说明
+
+| 功能       | 标准code        | 类型    | 标准值                                                       | 示例                                                         | 备注                                                         |
+| ---------- | --------------- | ------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 开关       | switch_led      | Boolean | true/false （打开/关闭）                                     | {"switch_led":true}                                          |                                                              |
+| 模式       | work_mode       | Enum    | "white"/"colour"/"scene"/"music"白光模式/彩光模式/场景/音乐灯 | {"work_mode":"scene"}                                        | 白光、彩光、场景、音乐灯的TAB栏，由DP点决定：  “白光”菜单栏：模式和亮度DP共同决定 “彩光”菜单栏：模式和颜色DP共同决定 “场景”菜单栏：模式和情境DP共同决定 “音乐灯”菜单栏：模式和音乐灯DP共同决定 “倒计时”：由倒计时DP点决定 “定时”：由云功能的，云端定时决定 |
+| 亮度       | bright_value_v2 | Integer | 10 – 1000                                                    | {"bright_value_v2":670}                                      | 亮度值10-1000，对应实际亮度1%-100%，最低亮度显示为1%         |
+| 色温       | temp_value_v2   | Integer | 0-1000                                                       | {"temp_value_v2":797"}                                       | 色温范围0-1000，对应实际色温0%-100%，分别对应最暖和最冷的范围取值，实际的色温值依赖于硬件的灯珠规格，比如2700K-6500K |
+| 颜色       | colour_data_v2  | String  | 000011112222  值说明：  0000：H（色度：0-360，0X0000-0X0168）  1111：S (饱和：0-1000, 0X0000-0X03E8)  2222：V (明度：0-1000，0X0000-0X03E8)  HSV (H,S,V): (HEX)(00DC, 004B,004E),转换为(DEC)为(220度,75%,78%) | {"colour_data_v2":"00DC004B004E"}                            | 颜色按照HSV体系传输，也可以通过算法转换为RGB颜色体系  参考网址https://www.rapidtables.com/convert/color/index.html  可以获得RGB (R,G,B): (HEX)(32,64,C8),(DEC)(50,100,200) |
+| 情景       | scene_data_v2   | String  | 0011223344445555666677778888  00：情景号  11：单元切换间隔时间（0-100）  22：单元变化时间（0-100）  33：单元变化模式（0静态1跳变2渐变）  4444：H（色度：0-360，0X0000-0X0168）  5555：S (饱和：0-1000, 0X0000-0X03E8)  6666：V (明度：0-1000，0X0000-0X03E8)  7777：白光亮度（0-1000）  8888：色温值（0-1000）  注：数字1-8的标号对应有多少单元就有多少组 | {"25":"010b0a02000003e803e8000000000b0a02007603e803e8000000000b0a0200e703e803e800000000"} | 01：情景号01  0b：单元切换间隔时间（0）  0a：单元变化时间（10）  02：单元变化模式:渐变  0000：H（色度：0X0000）  03e8：S (饱和：0-1000, 0X0000-0X03E8)  03e8：V (明度：0-1000，0X0000-0X03E8)  0000：白光亮度（0-1000）  0000：色温值（0-1000） |
+| 倒计时     | countdown_1     | Integer | **0-86400** **说明：** 数据单位秒，对应一分钟取值60，最大设置86400=23小时59分钟 0表示关闭 | **{ "\**countdown_1\**":"120" }**                            |                                                              |
+| 音乐       | music_data      | String  | 011112222333344445555 说明： 0： 变化方式，0表示直接输出，1表示渐变  1111：H（色度：0-360，0X0000-0X0168）  2222：S (饱和：0-1000, 0X0000-0X03E8)  3333：V (明度：0-1000，0X0000-0X03E8)  4444：白光亮度（0-1000）  5555：色温值（0-1000） | {"music_data":"1007603e803e800120025"}  0： 变化方式，0表示直接输出，1表示渐变  示例说明：  1： 变化方式， 1表示渐变  0076：H（色度： 0X0076）  03e8：S (饱和：0X03e8)  03e8：：V (明度： 0X03e8)  0012：亮度（18%）  0025：色温（37%） | 该功能点和模式功能点一起，决定是否显示音乐灯                 |
+| 调节DP控制 | control_data    | String  | 0： 变化方式，0表示直接输出，1表示渐变 1111：H（色度：0-360，0 X0000-0X0168 ） 2222： S ( 饱和：0 -1000, 0X0000-0X03E8) 3333： V ( 明度：0-1000，0 X0000-0X03E8) 4444：白光亮度（0-1000） 5555：色温值（0-1000） | **{** **"\**control_data\**":"** **10076** **03e803e800120025"** **}** 1： 变化方式， 1表示渐变 0076 ：H（色度： 0 X0076 ） 03e8 ： S ( 饱和： 0X03e8) 03e8 ：： V ( 明度： 0 X03e8) 0012 ：亮度（ 18 %） 0025 ：色温（ 37 %） | 该DP用于面板调节过程中实时数据下发                           |
+| 情景变化   | scene_data_v2   | String  | 情景的具体格式如下： 00 11 22 33 444455556666 77778888  Tab time speed mode color(hsv) white(bright,temper)  除了Tab之外，其余部分组成基本的情景单元，目前最大可设置8个  即 00 +（11223344445555666677778888）* 8  Time与speed的关系：  渐变与单元切换目前为同时进行，可以达到三种变化状态（分布进行只有两种）  A:同步完成：  要实现渐变完成后马上切换下一个单元，发送time = speed即可  B:渐变后停滞等待  例如，将实现1s完成渐变，并停滞1s在继续渐变。发送time = 2，speed = 1即可  C:提前切换  当渐变时间小于切换时间，会发生在变化之中切换到下一个目标状态开始渐变，实现一种比较随机的变化效果。发送time<speed  Time（各个情景单元间切换时间）0 – 100（单位：100ms）  可以实现100ms – 10s的切换间隔，为0时表示直接切换到下一个单元，但从此单元的状态进行过度  具体如下图：  以上图为例，当单元B的time为0时，可以相当于变化是A到C的过程，但是在中间节点X处灯光状态切换到B继续变化  Speed（情景单元从上个状态切换到目标状态的渐变速度）0-100（单位HZ）  注：目前具体实现依旧使用时间为单位，所以最快为1（10khz），最慢为100（100hz），需不需修改后续商议。  新版灯光的渐变步进为1000，所以速度 = 时间变化时间/1000  设变化时间为t  例如，当speed下发1，s = 0.1s/1000 = 10Khz  当speed = 0时，当前单元的变化会停滞，直到单元切换时间T到，切换到下一个目标情景单元才会开始从停滞单元变化到新的单元  Mode为当前情景单元过度到下一个目标情景单元的变化方式，有0，1，2三种方式  Mode = 0：静态情景，当目标情景的模式为0时，当此变化完成便停止情景变化，成为静态情景。变化速度目前固定为正常白光和彩光的呼吸时间（500ms）。  Mode = 1：跳变模式，当单元切换时间一到，直接切换为新的情景单元  Mode = 2：渐变模式，当线程读取到了当前情景单元中数据由上一个情景单元渐变到新的情景  新版灯的情景较旧版本只能点亮彩灯，现在支持白光灯和彩灯同时点亮的功能 |                                                              |                                                              |
 
 
 

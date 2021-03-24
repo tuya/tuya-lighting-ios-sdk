@@ -309,14 +309,10 @@ SDK没有封装的方法可以通过TuyaSmartLightDevice父类的此接口下发
 **接口说明**
 
 ```objective-c
-/**
- *  dp command publish.
- *  标准 dp 命令下发
- *
- *  @param commands dpCode - value dictionary
- *  @param success Success block
- *  @param failure Failure block
- */
+/// Dp command publish.
+/// @param commands DpCode - value dictionary.
+/// @param success Called when the task finishes successfully.
+/// @param failure Called when the task is interrupted by an error.
 - (void)publishDpWithCommands:(NSDictionary *)commands
                       success:(nullable TYSuccessHandler)success
                       failure:(nullable TYFailureError)failure;

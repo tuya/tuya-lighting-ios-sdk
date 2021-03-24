@@ -297,13 +297,10 @@ The SDK does not encapsulate a method to issue standard DP code commands through
 **Interface Description**
 
 ```objective-c
-/**
- *  dp command publish.
- *
- *  @param commands dpCode - value dictionary
- *  @param success Success block
- *  @param failure Failure block
- */
+/// Dp command publish.
+/// @param commands DpCode - value dictionary.
+/// @param success Called when the task finishes successfully.
+/// @param failure Called when the task is interrupted by an error.
 - (void)publishDpWithCommands:(NSDictionary *)commands
                       success:(nullable TYSuccessHandler)success
                       failure:(nullable TYFailureError)failure;

@@ -2,8 +2,7 @@
 //  TuyaSmartLightKit.h
 //  Pods
 //
-//  Created by neil on 2020/12/9.
-//
+//  Copyright (c) 2014-2021 Tuya Inc. (https://developer.tuya.com)
 
 #ifndef TuyaSmartLightKit_h
 #define TuyaSmartLightKit_h

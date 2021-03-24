@@ -2,8 +2,7 @@
 //  TuyaSmartStandSchemaModel+TuyaSmartLightKit.h
 //  TuyaSmartLightKit
 //
-//  Created by neil on 2020/11/28.
-//
+//  Copyright (c) 2014-2021 Tuya Inc. (https://developer.tuya.com)
 
 #import <TuyaSmartDeviceCoreKit/TuyaSmartDeviceCoreKit.h>
 
@@ -15,15 +14,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TuyaSmartStatusSchemaModel (TuyaSmartLightKit)
 
-@property (nonatomic, strong) NSString     *valueRange; //取值范围
-@property (nonatomic, strong) NSDictionary *relationDpIdMaps; //dpcode->dpid映射关系
+///Range of values.  取值范围
+@property (nonatomic, strong) NSString     *valueRange;
+///dpcode->dpid mapping relationship.  dpcode->dpid映射关系
+@property (nonatomic, strong) NSDictionary *relationDpIdMaps;
 
 @end
 
 @interface TuyaSmartFunctionSchemaModel (TuyaSmartLightKit)
 
-@property (nonatomic, strong) NSString     *valueRange; //取值范围
-@property (nonatomic, strong) NSDictionary *relationDpIdMaps; //dpcode->dpid映射关系
+///Range of values.  取值范围
+@property (nonatomic, strong) NSString     *valueRange;
+///dpcode->dpid mapping relationship.  dpcode->dpid映射关系
+@property (nonatomic, strong) NSDictionary *relationDpIdMaps;
 
 @end
 

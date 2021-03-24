@@ -2,8 +2,7 @@
 //  TuyaSmartLightDevice.h
 //  TuyaSmartLightKit
 //
-//  Created by neil on 2020/11/12.
-//
+//  Copyright (c) 2014-2021 Tuya Inc. (https://developer.tuya.com)
 
 #import <Foundation/Foundation.h>
 #import <TuyaSmartDeviceCoreKit/TuyaSmartDeviceCoreKit.h>
@@ -14,11 +13,16 @@ NS_ASSUME_NONNULL_BEGIN
 @class TuyaSmartLightDevice;
 
 typedef enum : NSUInteger {
-    TuyaSmartLightTypeC=1,//白光灯 bright light，dpCode：bright_value
-    TuyaSmartLightTypeCW,//白光+冷暖 bright + temperature，dpCode：bright_value + temp_value
-    TuyaSmartLightTypeRGB,//RGB，dpCode：colour_data
-    TuyaSmartLightTypeRGBC,//bright+RGB，dpCode：bright_value + colour_data
-    TuyaSmartLightTypeRGBCW,//bright+temperature+RGB，dpCode：bright_value + temp_value + colour_data
+    ///白光灯 bright light，dpCode：bright_value
+    TuyaSmartLightTypeC=1,
+    ///白光+冷暖 bright + temperature，dpCode：bright_value + temp_value
+    TuyaSmartLightTypeCW,
+    ///RGB，dpCode：colour_data
+    TuyaSmartLightTypeRGB,
+    ///bright+RGB，dpCode：bright_value + colour_data
+    TuyaSmartLightTypeRGBC,
+    ///bright+temperature+RGB，dpCode：bright_value + temp_value + colour_data
+    TuyaSmartLightTypeRGBCW,
 } TuyaSmartLightType;
 
 @protocol TuyaSmartLightDeviceDelegate <TuyaSmartDeviceDelegate>

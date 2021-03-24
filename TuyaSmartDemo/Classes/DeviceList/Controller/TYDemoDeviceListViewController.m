@@ -20,7 +20,6 @@
 
 #import "TYDemoDJPanelViewController.h"
 #import <TuyaSmartBLEMeshKit/TuyaSmartSIGMeshManager.h>
-#import <TuyaSmartBLEMeshKit/TuyaSmartHome+SIGMesh.h>
 #import <TuyaSmartBLEMeshKit/TuyaSmartSIGMeshManager+Activator.h>
 
 /*

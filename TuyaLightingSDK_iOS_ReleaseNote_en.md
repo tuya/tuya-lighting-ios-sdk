@@ -1,5 +1,14 @@
 # Tuya Smart iOS Lighting SDK Release Notes
 
+## V0.1.2
+
+### Release date
+
+2021.03.24
+
+- Update podspec.
+- Update documentation.
+
 ## V0.1.1
 
 ### Release date

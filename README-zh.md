@@ -26,7 +26,7 @@ platform :ios, '9.0'
 
 target 'your_target_name' do
 
-   pod 'TuyaSmartLightKit', :git => 'https://github.com/tuya/tuyasmart-lighting-ios-sdk.git'
+   pod 'TuyaSmartLightKit', :git => 'https://github.com/tuya/tuya-lighting-ios-sdk.git'
 ```
 
 然后在项目根目录下执行 `pod update` 命令，集成第三方库。
